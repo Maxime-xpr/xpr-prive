@@ -410,7 +410,7 @@ footer{padding:32px;border-top:1px solid var(--border);text-align:center;font-si
     <p class="cta-box-sub">Le diagnostic identifie vos zones d'ombre. Il ne vous engage à rien. Il vous donne une lecture que personne ne fait pour vous — sauf si vous savez où chercher.</p>
     <div class="cta-actions">
       <a class="btn-primary" href="diagnostic.html">Faire mon diagnostic →</a>
-      <a class="btn-secondary" href="/cdn-cgi/l/email-protection#6c0b091f180503022c141c1e410f03021f0905001f420f0301531f190e06090f18512809010d020809495e5c0809495e5c08050d0b02031f18050f">Écrire directement</a>
+      <a class="btn-secondary" href="mailto:gestion@xpr-conseils.com?subject=Demande%20de%20diagnostic">Écrire directement</a>
     </div>
   </div>
 </div>
@@ -418,9 +418,10 @@ footer{padding:32px;border-top:1px solid var(--border);text-align:center;font-si
 
 <footer><div class="wrap">XPR — Expertise Privée · Méthode d'expertise indépendante · Ce site ne constitue pas un conseil juridique.</div></footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.querySelectorAll('#faq-list .faq-q').forEach(function(btn){
-  btn.addEventListener('click', function(){
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
     var item = this.closest('.faq-item');
     var wasOpen = item.classList.contains('open');
     document.querySelectorAll('#faq-list .faq-item').forEach(function(i){ i.classList.remove('open'); });
@@ -439,4 +440,13 @@ var observer = new IntersectionObserver(function(entries){
   });
 }, {threshold:.12});
 document.querySelectorAll('section:not(#hero)').forEach(function(sec){
-  var ta
+  var targets = sec.querySelectorAll('.sec-tag,.sec-title,.sec-sub,.def-box,.steps,.tension-grid,.sin-grid,.market-cards,.market-note,.model-box,.faq-list,.cta-box,.pyramid-wrap,.pricing-grid,.pricing-note');
+  for(var i=0; i<targets.length; i++){
+    targets[i].setAttribute('data-anim','');
+    targets[i].style.opacity='0';
+  }
+  observer.observe(sec);
+});
+</script>
+</body>
+</html>
