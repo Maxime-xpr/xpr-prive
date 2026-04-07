@@ -100,10 +100,9 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
   padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s}
 .photo-zone:hover{border-color:var(--border2)}
 .photo-zone-sm{padding:18px 16px}
-.photo-preview{display:flex;align-items:center;gap:10px;padding:12px 14px;
+.photo-done{display:flex;align-items:center;gap:10px;padding:12px 14px;
   background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
-  margin-top:8px;font-size:12px;color:var(--text3);font-family:var(--mono);
-  word-break:break-all}
+  margin-top:8px;font-size:13px;color:var(--success);font-family:var(--mono)}
 
 .info-box{font-size:13px;color:var(--text3);line-height:1.7;padding:14px 16px;
   border:1px solid var(--border);border-radius:var(--r)}
@@ -137,7 +136,6 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
   font-weight:700;line-height:1.18;letter-spacing:-.03em}
 .welcome-sub{font-size:17px;color:var(--text2);line-height:1.85;max-width:480px}
 
-/* ── INTERSTITIAL ── */
 .interstitial{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;
   justify-content:center;align-items:center;text-align:center;padding:40px 32px;
   background:var(--bg);cursor:pointer}
@@ -163,7 +161,6 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
 
 <main id="mc">
 
-  <!-- ════ WELCOME ════ -->
   <div class="screen active" id="screen-welcome">
     <h1 class="welcome-title">État de pertes</h1>
     <p class="welcome-sub">Classez tous vos biens endommagés dans un seul document et obtenez une estimation claire.</p>
@@ -171,7 +168,6 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
     <div class="btn-row"><button class="btn-primary" onclick="go('info')">Commencer →</button></div>
   </div>
 
-  <!-- ════ INFO ════ -->
   <div class="screen" id="screen-info">
     <div class="q-num">Informations</div>
     <div class="q-text" style="font-size:22px">Vos coordonnées</div>
@@ -190,7 +186,6 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
     </div>
   </div>
 
-  <!-- ════ WIZARD ════ -->
   <div class="screen" id="screen-wizard">
     <div class="progress-bar">
       <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
@@ -203,7 +198,6 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
     </div>
   </div>
 
-  <!-- ════ RECAP ════ -->
   <div class="screen" id="screen-recap">
     <div id="rbody"></div>
     <div class="btn-col">
@@ -214,13 +208,15 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;
 
 </main>
 
-<input type="file" id="fp1" accept="image/*" capture="environment" style="display:none" onchange="onPh(0)">
-<input type="file" id="fp2" accept="image/*" capture="environment" style="display:none" onchange="onPh(1)">
+<input type="file" id="fp1" accept="image/*" style="display:none" onchange="onPh(0)">
+<input type="file" id="fp2" accept="image/*" style="display:none" onchange="onPh(1)">
 
 <script>
 /*
   FLOW: Photo → Catégorie → Désignation → Facture → Date → Valeur → Réparable
   Steps:  1        2            3            4        5       6         7
+  Photos: user takes via native camera, saved in their gallery at full quality.
+  Excel column "Justificatif" shows Oui/Non.
 */
 var CATS=['Électrique','Non électrique','Meuble','Textile / Linge','Autre'];
 var CORD={};CATS.forEach(function(c,i){CORD[c]=i});
@@ -228,7 +224,6 @@ var RTHR=150,STEPS=7;
 var items=[],cur={},step=1,first=true;
 var _it=null,_ia=false;
 
-/* ── INTERSTITIALS ── */
 var INT={
   intro:{ic:'',t:"Pour le premier objet, nous vous donnons nos conseils. Pour les suivants, vous saurez."},
   pre:{ic:'💡',t:"Chaque ligne renseignée vous rapproche d'une indemnité plus juste. Soyez vigilant."},
@@ -261,7 +256,6 @@ function showI(key,cb){
   _it=setTimeout(dismiss,5500);
 }
 
-/* ── NAVIGATION ── */
 function go(id){
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
   var old=document.getElementById('iov');
@@ -277,7 +271,6 @@ function updB(){
   else b.style.display='none';
 }
 
-/* ── INFO ── */
 function chkInfo(){
   var nom=document.getElementById('i-nom').value.trim();
   document.getElementById('b-info').disabled=!nom;
@@ -297,10 +290,9 @@ function startWiz(){
 }
 
 function rstCur(){
-  cur={cat:null,desig:'',fact:null,dD:'',dM:'',dY:'',val:'',rep:null,photos:[]};
+  cur={cat:null,desig:'',fact:null,dD:'',dM:'',dY:'',val:'',rep:null,ph1:false,ph2:false};
 }
 
-/* ── WIZARD RENDER ── */
 function esc(s){
   return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
     .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -319,19 +311,18 @@ function render(){
   var h='<div class="fade-in" style="display:flex;flex-direction:column;gap:16px">';
 
   if(step===1){
-    var p0=cur.photos[0],p1=cur.photos[1];
     h+='<div class="q-num">Question 1/'+STEPS+'</div>';
     h+='<div class="q-text">Photographiez le bien</div>';
-    h+='<div class="q-help">Prenez une photo d\'ensemble du bien sinistré.</div>';
+    h+='<div class="q-help">Prenez une photo d\'ensemble du bien sinistré. Elle sera sauvegardée dans votre galerie en pleine qualité.</div>';
     h+='<div class="photo-zone" onclick="document.getElementById(\'fp1\').click()">';
     h+='<div style="font-size:28px;margin-bottom:6px">📷</div>';
     h+='<div style="font-size:14px;color:var(--text3)">Prendre une photo</div></div>';
-    if(p0) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p0)+'</span></div>';
+    if(cur.ph1) h+='<div class="photo-done">✓ Photo du bien prise</div>';
     h+='<div style="margin-top:10px"><div class="photo-zone photo-zone-sm" onclick="document.getElementById(\'fp2\').click()">';
     h+='<div style="font-size:13px;color:var(--text3)">+ Photo facture ou plaque signalétique</div></div>';
-    if(p1) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p1)+'</span></div>';
+    if(cur.ph2) h+='<div class="photo-done">✓ Photo facture / plaque prise</div>';
     h+='</div>';
-    h+='<div class="info-box">Les photos et documents seront sur votre pellicule, il ne restera plus qu\'à les transférer à l\'assurance avec votre état de pertes.</div>';
+    h+='<div class="info-box">Vos photos resteront dans votre galerie en pleine qualité. Vous les enverrez à votre assureur avec votre état de pertes.</div>';
   }
 
   else if(step===2){
@@ -370,8 +361,8 @@ function render(){
     for(var i=1;i<=31;i++) h+='<option value="'+i+'"'+(cur.dD==i?' selected':'')+'>'+String(i).padStart(2,'0')+'</option>';
     h+='</select>';
     h+='<select class="q-select" onchange="cur.dM=this.value;chkW()"><option value="">Mois</option>';
-    ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'].forEach(function(m,i){
-      h+='<option value="'+(i+1)+'"'+(cur.dM==i+1?' selected':'')+'>'+m+'</option>';
+    ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'].forEach(function(m,idx){
+      h+='<option value="'+(idx+1)+'"'+(cur.dM==idx+1?' selected':'')+'>'+m+'</option>';
     });
     h+='</select>';
     h+='<select class="q-select" onchange="cur.dY=this.value;chkW()"><option value="">Année</option>';
@@ -407,7 +398,6 @@ function render(){
   setTimeout(function(){var inp=body.querySelector('input.q-input');if(inp)inp.focus();},60);
 }
 
-/* ── VALIDATION ── */
 function chkW(){
   var btn=document.getElementById('b-next'),ok=false;
   if(step===1) ok=true;
@@ -420,7 +410,6 @@ function chkW(){
   btn.disabled=!ok;
 }
 
-/* ── AUTO-ADVANCE + INTERSTITIALS ── */
 function pickCat(c){
   cur.cat=c;
   showI('postCat',function(){step=3;render();});
@@ -444,11 +433,11 @@ function skipDate(){
 function onPh(slot){
   var inp=document.getElementById('fp'+(slot+1));
   var f=inp.files[0];if(!f)return;
-  cur.photos[slot]=f.name.replace(/[^\w.\-]/g,'_');
+  if(slot===0) cur.ph1=true;
+  else cur.ph2=true;
   render();inp.value='';
 }
 
-/* ── WIZARD NAV ── */
 function wNext(){
   if(step===1){
     showI('postPhoto',function(){step=2;render();});
@@ -479,16 +468,16 @@ function wBack(){
 }
 
 function saveItem(){
+  var hasPhoto=cur.ph1||cur.ph2;
   items.push({
     cat:cur.cat,desig:cur.desig,fact:cur.fact,
     dD:cur.dD,dM:cur.dM,dY:cur.dY,
-    val:cur.val,rep:cur.rep,photos:cur.photos.slice()
+    val:cur.val,rep:cur.rep,photo:hasPhoto?'Oui':'Non'
   });
   first=false;
   go('recap');renderR();
 }
 
-/* ── RECAP ── */
 function renderR(){
   var body=document.getElementById('rbody');
   var total=0;items.forEach(function(i){total+=parseFloat(i.val)||0;});
@@ -502,8 +491,8 @@ function renderR(){
     h+='<span class="recap-cat-total">'+ct.toLocaleString('fr-FR')+' €</span></div>';
     ci.forEach(function(item){
       var idx=items.indexOf(item);
-      var meta=[];var pc=item.photos.filter(Boolean).length;
-      if(pc>0)meta.push('📷'+pc);
+      var meta=[];
+      if(item.photo==='Oui')meta.push('📷 Photo');
       if(item.fact==='Oui')meta.push('Facture ✓');
       h+='<div class="recap-item"><div class="recap-item-info">';
       h+='<div class="recap-item-name">'+esc(item.desig)+'</div>';
@@ -515,7 +504,7 @@ function renderR(){
   });
   h+='<div class="recap-total"><span class="recap-total-label">Total</span>';
   h+='<span class="recap-total-value">'+total.toLocaleString('fr-FR')+' €</span></div>';
-  h+='<div class="info-box" style="margin-top:24px"><strong>Rappel :</strong> les photos et factures sont dans votre pellicule, assurez-vous qu\'elles soient de bonne qualité avant envoi.</div>';
+  h+='<div class="info-box" style="margin-top:24px"><strong>Rappel :</strong> les photos et factures sont dans votre pellicule, assurez-vous qu\'elles soient de bonne qualité avant envoi. Regroupez-les dans un dossier et envoyez-le avec votre état de pertes à votre assureur.</div>';
   body.innerHTML=h;
   document.getElementById('b-gen').disabled=items.length===0;
   updB();
@@ -524,7 +513,6 @@ function renderR(){
 function delI(idx){items.splice(idx,1);if(!items.length){go('info');return;}renderR();}
 function addMore(){rstCur();step=1;go('wizard');render();}
 
-/* ── EXCEL ── */
 function genXL(){
   if(typeof XLSX==='undefined'){
     alert('Le module d\'export charge encore. Réessayez dans quelques secondes.');return;
@@ -534,7 +522,7 @@ function genXL(){
   var sorted=items.slice().sort(function(a,b){return(CORD[a.cat]||99)-(CORD[b.cat]||99);});
 
   var hdrs=['Localisation','Catégorie','Désignation','Facture',
-    "Date d'achat",'Valeur de rachat (€)','Réparable','Justificatif photo'];
+    "Date d'achat",'Valeur de rachat (€)','Réparable','Justificatif'];
 
   var rows=[];
   sorted.forEach(function(it){
@@ -543,8 +531,7 @@ function genXL(){
     if(it.dM) parts.push(String(it.dM).padStart(2,'0'));
     if(it.dY&&it.dY!=='à compléter') parts.push(it.dY);
     var ds=it.dY==='à compléter'?'À compléter':parts.join('/');
-    rows.push(['',it.cat,it.desig,it.fact,ds,parseFloat(it.val)||0,it.rep,
-      it.photos.filter(Boolean).join(', ')]);
+    rows.push(['',it.cat,it.desig,it.fact,ds,parseFloat(it.val)||0,it.rep,it.photo]);
   });
   rows.push([]);
   var gt=0;sorted.forEach(function(i){gt+=parseFloat(i.val)||0;});
@@ -556,37 +543,32 @@ function genXL(){
     [],hdrs].concat(rows);
 
   var ws=XLSX.utils.aoa_to_sheet(wsData);
-  ws['!cols']=[{wch:16},{wch:22},{wch:36},{wch:12},{wch:14},{wch:20},{wch:12},{wch:32}];
+  ws['!cols']=[{wch:16},{wch:22},{wch:36},{wch:12},{wch:14},{wch:20},{wch:12},{wch:14}];
   ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:7}}];
 
-  /* ── STYLES ── */
   var bdr={style:'thin',color:{rgb:'000000'}};
   var borders={top:bdr,bottom:bdr,left:bdr,right:bdr};
-  var centerAlign={horizontal:'center',vertical:'center'};
+  var ctr={horizontal:'center',vertical:'center'};
 
   // Title
   var tA=XLSX.utils.encode_cell({r:0,c:0});
-  if(ws[tA]) ws[tA].s={font:{bold:true,sz:14},alignment:centerAlign};
+  if(ws[tA]) ws[tA].s={font:{bold:true,sz:14},alignment:ctr};
 
-  // Header row (index 6)
+  // Headers (row 6)
   var hr=6;
   for(var c=0;c<hdrs.length;c++){
     var a=XLSX.utils.encode_cell({r:hr,c:c});
-    if(ws[a]) ws[a].s={font:{bold:true,sz:11},alignment:centerAlign,border:borders};
+    if(ws[a]) ws[a].s={font:{bold:true,sz:11},alignment:ctr,border:borders};
   }
 
-  // Data rows + total
+  // Data + total rows
   var ds2=hr+1,de=ds2+rows.length;
   for(var r=ds2;r<de;r++){
     for(var c2=0;c2<hdrs.length;c2++){
       var a2=XLSX.utils.encode_cell({r:r,c:c2});
       if(!ws[a2]) ws[a2]={t:'s',v:''};
       var isTotal=(r===wsData.length-1);
-      ws[a2].s={
-        alignment:centerAlign,
-        border:borders,
-        font:isTotal?{bold:true,sz:12}:{sz:11}
-      };
+      ws[a2].s={alignment:ctr,border:borders,font:isTotal?{bold:true,sz:12}:{sz:11}};
     }
   }
 
@@ -595,7 +577,6 @@ function genXL(){
   XLSX.writeFile(wb,'Etat_de_pertes_'+nom.replace(/\s+/g,'_')+'.xlsx');
 }
 
-/* ── LOAD XLSX-JS-STYLE ── */
 (function(){
   var s=document.createElement('script');
   s.src='https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js';
