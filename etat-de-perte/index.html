@@ -18,90 +18,138 @@
   --danger:#f06060;--success:#60f0c8;
 }
 html{background:var(--bg)}
-body{font-family:var(--mono);background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--mono);background:var(--bg);color:var(--text);
+  min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10}
+header{padding:20px 24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+  position:sticky;top:0;background:rgba(10,10,10,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:10}
 .logo{font-size:14px;letter-spacing:.14em;color:var(--text3)}
 .logo strong{color:var(--accent);font-weight:500}
-.badge{font-size:11px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);padding:4px 10px;border-radius:2px}
+.badge{font-size:11px;color:var(--text3);letter-spacing:.08em;
+  text-transform:uppercase;border:1px solid var(--border);padding:4px 10px;border-radius:2px}
 
-main{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:640px;margin:0 auto;padding:32px 24px}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;
+  width:100%;max-width:640px;margin:0 auto;padding:32px 24px}
 .screen{display:none;flex-direction:column;gap:24px}
 .screen.active{display:flex}
 
-/* ── TYPOGRAPHY ── */
-.q-num{font-size:12px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono)}
-.q-text{font-family:var(--head);font-size:clamp(21px,4vw,28px);font-weight:600;line-height:1.35;letter-spacing:-.015em;color:var(--text)}
+.q-num{font-size:12px;color:var(--text3);letter-spacing:.12em;
+  text-transform:uppercase;font-family:var(--mono)}
+.q-text{font-family:var(--head);font-size:clamp(21px,4vw,28px);font-weight:600;
+  line-height:1.35;letter-spacing:-.015em;color:var(--text)}
 .q-help{font-size:14px;color:var(--text3);line-height:1.7;margin-top:-12px}
-.label{font-size:12px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block}
+.label{font-size:12px;color:var(--text3);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:6px;display:block}
 
-/* ── BUTTONS ── */
 .btn-row{display:flex;gap:10px;margin-top:8px}
 .btn-col{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.btn-primary{flex:1;padding:16px;background:var(--accent);border:none;border-radius:var(--r);color:#0a0a0a;font-size:15px;font-weight:600;font-family:var(--head);cursor:pointer;letter-spacing:.02em;min-height:52px;transition:background .15s}
+.btn-primary{flex:1;padding:16px;background:var(--accent);border:none;
+  border-radius:var(--r);color:#0a0a0a;font-size:15px;font-weight:600;
+  font-family:var(--head);cursor:pointer;letter-spacing:.02em;min-height:52px;
+  transition:background .15s}
 .btn-primary:hover{background:#d4f570}
 .btn-primary:active{transform:scale(.97)}
 .btn-primary:disabled{background:var(--text3);opacity:.3;cursor:not-allowed;transform:none}
-.btn-back{padding:16px 18px;background:transparent;border:none;color:var(--text3);font-size:13px;font-family:var(--mono);cursor:pointer;letter-spacing:.04em;min-height:52px;transition:color .15s}
+.btn-back{padding:16px 18px;background:transparent;border:none;color:var(--text3);
+  font-size:13px;font-family:var(--mono);cursor:pointer;letter-spacing:.04em;
+  min-height:52px;transition:color .15s}
 .btn-back:hover{color:var(--text2)}
-.btn-add{padding:16px;background:var(--accent);border:none;border-radius:var(--r);color:#0a0a0a;font-size:15px;font-weight:600;font-family:var(--head);cursor:pointer;letter-spacing:.02em;min-height:52px;transition:background .15s;width:100%}
+.btn-add{padding:16px;background:var(--accent);border:none;border-radius:var(--r);
+  color:#0a0a0a;font-size:15px;font-weight:600;font-family:var(--head);
+  cursor:pointer;letter-spacing:.02em;min-height:52px;width:100%;transition:background .15s}
 .btn-add:hover{background:#d4f570}
 .btn-add:active{transform:scale(.97)}
-.btn-generate{padding:16px 24px;background:transparent;border:1px solid var(--border);border-radius:var(--r);color:var(--text2);font-size:14px;font-family:var(--mono);cursor:pointer;letter-spacing:.04em;min-height:52px;transition:border-color .15s,color .15s;width:100%}
+.btn-generate{padding:16px 24px;background:transparent;border:1px solid var(--border);
+  border-radius:var(--r);color:var(--text2);font-size:14px;font-family:var(--mono);
+  cursor:pointer;letter-spacing:.04em;min-height:52px;width:100%;
+  transition:border-color .15s,color .15s}
 .btn-generate:hover{border-color:var(--border2);color:var(--text)}
 .btn-generate:disabled{opacity:.3;cursor:not-allowed}
-.btn-skip{background:none;border:none;color:var(--text3);font-size:13px;font-family:var(--mono);cursor:pointer;letter-spacing:.04em;padding:8px 0;transition:color .15s}
-.btn-skip:hover{color:var(--text2)}
+.btn-skip{background:none;border:none;color:var(--text);font-size:13px;
+  font-family:var(--mono);cursor:pointer;letter-spacing:.04em;padding:8px 0;
+  transition:color .15s}
+.btn-skip:hover{color:var(--accent)}
 
-/* ── OPTIONS ── */
 .q-opts{display:flex;flex-direction:column;gap:8px}
-.q-opt{display:flex;align-items:center;justify-content:center;width:100%;padding:15px 18px;background:transparent;border:1px solid var(--border);border-radius:var(--r);color:var(--text2);font-size:17px;font-family:var(--mono);text-align:center;cursor:pointer;transition:border-color .15s,color .15s,background .15s;letter-spacing:.02em;line-height:1.5}
+.q-opt{display:flex;align-items:center;justify-content:center;width:100%;
+  padding:15px 18px;background:transparent;border:1px solid var(--border);
+  border-radius:var(--r);color:var(--text2);font-size:17px;font-family:var(--mono);
+  text-align:center;cursor:pointer;letter-spacing:.02em;line-height:1.5;
+  transition:border-color .15s,color .15s,background .15s}
 .q-opt:hover{border-color:var(--border2);color:var(--text);background:var(--bg2)}
-.q-opt.selected{background:var(--accent2);border-color:rgba(200,240,96,.2);color:var(--accent)}
 
-/* ── INPUTS ── */
-.q-input{width:100%;padding:15px 18px;background:transparent;border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:17px;font-family:var(--mono);outline:none;letter-spacing:.02em;transition:border-color .15s}
+.q-input{width:100%;padding:15px 18px;background:transparent;
+  border:1px solid var(--border);border-radius:var(--r);color:var(--text);
+  font-size:17px;font-family:var(--mono);outline:none;letter-spacing:.02em;
+  transition:border-color .15s}
 .q-input:focus{border-color:var(--border2)}
 .q-input::placeholder{color:var(--text3)}
-.q-select{padding:14px 6px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:15px;font-family:var(--mono);flex:1;outline:none;text-align:center;-webkit-appearance:none}
+.q-select{padding:14px 6px;background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r);color:var(--text);font-size:15px;font-family:var(--mono);
+  flex:1;outline:none;text-align:center;-webkit-appearance:none}
 .q-select option{background:var(--bg);color:var(--text)}
 .date-row{display:flex;gap:8px}
 .input-wrap{position:relative}
-.input-suffix{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:17px;font-family:var(--mono);pointer-events:none}
+.input-suffix{position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  color:var(--text3);font-size:17px;font-family:var(--mono);pointer-events:none}
 
-/* ── PHOTO ── */
-.photo-zone{border:1px solid var(--border);border-radius:var(--r);padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s}
+.photo-zone{border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 20px;text-align:center;cursor:pointer;transition:border-color .15s}
 .photo-zone:hover{border-color:var(--border2)}
 .photo-zone-sm{padding:18px 16px}
-.photo-preview{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-top:8px;font-size:12px;color:var(--text3);font-family:var(--mono);word-break:break-all}
-.info-box{font-size:13px;color:var(--text3);line-height:1.7;padding:14px 16px;border:1px solid var(--border);border-radius:var(--r)}
+.photo-preview{display:flex;align-items:center;gap:10px;padding:12px 14px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  margin-top:8px;font-size:12px;color:var(--text3);font-family:var(--mono);
+  word-break:break-all}
+
+.info-box{font-size:13px;color:var(--text3);line-height:1.7;padding:14px 16px;
+  border:1px solid var(--border);border-radius:var(--r)}
 .info-box strong{color:var(--text2)}
 
-/* ── PROGRESS ── */
 .progress-bar{display:flex;align-items:center;gap:10px}
 .progress-track{width:64px;height:1px;background:var(--border2)}
 .progress-fill{height:100%;background:var(--accent);transition:width .4s ease}
 
-/* ── RECAP ── */
 .recap-cat{margin-bottom:24px}
-.recap-cat-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.recap-cat-name{font-size:12px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono)}
+.recap-cat-header{display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.recap-cat-name{font-size:12px;color:var(--accent);letter-spacing:.12em;
+  text-transform:uppercase;font-family:var(--mono)}
 .recap-cat-total{font-size:13px;color:var(--text3);font-family:var(--mono)}
-.recap-item{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.recap-item{display:flex;align-items:center;padding:12px 0;
+  border-bottom:1px solid var(--border)}
 .recap-item-info{flex:1;min-width:0}
 .recap-item-name{font-family:var(--head);font-size:15px;font-weight:500}
 .recap-item-meta{font-size:12px;color:var(--text3);margin-top:3px;font-family:var(--mono)}
-.recap-item-price{font-family:var(--head);font-size:15px;font-weight:700;margin-left:12px;white-space:nowrap}
-.recap-item-del{margin-left:12px;background:none;border:none;color:var(--danger);font-size:16px;cursor:pointer;padding:4px 8px;font-family:var(--mono)}
-.recap-total{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 0;border-top:1px solid var(--accent)}
+.recap-item-price{font-family:var(--head);font-size:15px;font-weight:700;
+  margin-left:12px;white-space:nowrap}
+.recap-item-del{margin-left:12px;background:none;border:none;color:var(--danger);
+  font-size:16px;cursor:pointer;padding:4px 8px;font-family:var(--mono)}
+.recap-total{display:flex;justify-content:space-between;align-items:baseline;
+  padding:16px 0 0;border-top:1px solid var(--accent)}
 .recap-total-label{font-family:var(--head);font-size:16px;font-weight:700}
 .recap-total-value{font-family:var(--head);font-size:22px;font-weight:700;color:var(--accent)}
 
-/* ── WELCOME ── */
-.welcome-label{font-size:14px;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-family:var(--mono)}
-.welcome-title{font-family:var(--head);font-size:clamp(34px,7vw,48px);font-weight:700;line-height:1.18;letter-spacing:-.03em}
+.welcome-title{font-family:var(--head);font-size:clamp(34px,7vw,48px);
+  font-weight:700;line-height:1.18;letter-spacing:-.03em}
 .welcome-sub{font-size:17px;color:var(--text2);line-height:1.85;max-width:480px}
 
+/* ── INTERSTITIAL ── */
+.interstitial{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:40px 32px;
+  background:var(--bg);cursor:pointer}
+.inter-icon{font-size:32px;opacity:0;transform:translateY(30px);
+  animation:interIn .5s .05s ease both}
+.inter-text{font-family:var(--head);font-size:clamp(18px,4vw,24px);font-weight:500;
+  line-height:1.6;color:var(--text2);max-width:480px;margin-top:20px;
+  opacity:0;transform:translateY(30px);animation:interIn .6s .2s ease both}
+.inter-example{font-family:var(--mono);font-size:14px;color:var(--accent);
+  margin-top:16px;max-width:480px;line-height:1.6;
+  opacity:0;transform:translateY(30px);animation:interIn .5s .55s ease both}
+@keyframes interIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{animation:fadeUp .25s ease both}
 </style>
@@ -110,293 +158,450 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%
 
 <header>
   <span class="logo"><strong>XPR</strong> État de pertes</span>
-  <span class="badge" id="header-badge" style="display:none"></span>
+  <span class="badge" id="hbadge" style="display:none"></span>
 </header>
 
-<main>
-  <!-- WELCOME -->
+<main id="mc">
+
+  <!-- ════ WELCOME ════ -->
   <div class="screen active" id="screen-welcome">
-    <div class="welcome-label">XPR — Expertise Privée</div>
     <h1 class="welcome-title">État de pertes</h1>
-    <p class="welcome-sub">Déclarez vos biens sinistrés un par un. À la fin, vous obtiendrez un document structuré à transmettre à votre assureur.</p>
-    <div class="info-box"><strong>Préparez :</strong> vos factures d'achat et les biens à photographier.</div>
-    <div class="btn-row">
-      <button class="btn-primary" onclick="go('info')">Commencer →</button>
-    </div>
+    <p class="welcome-sub">Classez tous vos biens endommagés dans un seul document et obtenez une estimation claire.</p>
+    <div class="info-box"><strong>Note :</strong> ce document pourra être envoyé directement à votre assurance.</div>
+    <div class="btn-row"><button class="btn-primary" onclick="go('info')">Commencer →</button></div>
   </div>
 
-  <!-- INFO -->
+  <!-- ════ INFO ════ -->
   <div class="screen" id="screen-info">
     <div class="q-num">Informations</div>
     <div class="q-text" style="font-size:22px">Vos coordonnées</div>
     <div>
       <label class="label">Nom et Prénom</label>
-      <input class="q-input" id="input-nom" placeholder="Jean Dupont" oninput="checkInfo()">
+      <input class="q-input" id="i-nom" placeholder="Jean Dupont" oninput="chkInfo()">
     </div>
     <div>
       <label class="label">Numéro de sinistre</label>
-      <input class="q-input" id="input-sinistre" placeholder="SIN-2026-XXXXX" oninput="checkInfo()">
-      <button class="btn-skip" id="btn-skip-sinistre" onclick="skipSinistre()">Je n'ai pas encore mon numéro →</button>
+      <input class="q-input" id="i-sin" placeholder="SIN-2026-XXXXX" oninput="chkInfo()">
+      <button class="btn-skip" id="bskip" onclick="skipSin()">Je n'ai pas encore mon numéro →</button>
     </div>
     <div class="btn-row">
       <button class="btn-back" onclick="go('welcome')">← Retour</button>
-      <button class="btn-primary" id="btn-info-next" disabled onclick="startWizard()">Suivant</button>
+      <button class="btn-primary" id="b-info" disabled onclick="startWiz()">Suivant</button>
     </div>
   </div>
 
-  <!-- WIZARD -->
+  <!-- ════ WIZARD ════ -->
   <div class="screen" id="screen-wizard">
     <div class="progress-bar">
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-      <span style="font-size:12px;color:var(--text3);letter-spacing:.06em" id="progress-label"></span>
+      <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+      <span style="font-size:12px;color:var(--text3);letter-spacing:.06em" id="plbl"></span>
     </div>
-    <div id="wizard-body"></div>
-    <div class="btn-row" id="wizard-btns">
-      <button class="btn-back" onclick="wizBack()">← Retour</button>
-      <button class="btn-primary" id="btn-wiz-next" disabled onclick="wizNext()">Suivant</button>
+    <div id="wbody"></div>
+    <div class="btn-row" id="wbtns">
+      <button class="btn-back" onclick="wBack()">← Retour</button>
+      <button class="btn-primary" id="b-next" disabled onclick="wNext()">Suivant</button>
     </div>
   </div>
 
-  <!-- RECAP -->
+  <!-- ════ RECAP ════ -->
   <div class="screen" id="screen-recap">
-    <div id="recap-body"></div>
+    <div id="rbody"></div>
     <div class="btn-col">
-      <button class="btn-add" onclick="addAnother()">+ Ajouter un bien</button>
-      <button class="btn-generate" id="btn-generate" onclick="generateExcel()">Générer le document ↓</button>
+      <button class="btn-add" onclick="addMore()">+ Ajouter un bien</button>
+      <button class="btn-generate" id="b-gen" onclick="genXL()">Générer le document ↓</button>
     </div>
   </div>
+
 </main>
 
-<input type="file" id="file-photo1" accept="image/*" capture="environment" style="display:none" onchange="onPhoto(0)">
-<input type="file" id="file-photo2" accept="image/*" capture="environment" style="display:none" onchange="onPhoto(1)">
+<input type="file" id="fp1" accept="image/*" capture="environment" style="display:none" onchange="onPh(0)">
+<input type="file" id="fp2" accept="image/*" capture="environment" style="display:none" onchange="onPh(1)">
 
 <script>
-var CATEGORIES=['Mobilier électrique','Mobilier non électrique','Meuble','Linge','Autre'];
-var CAT_ORDER={};CATEGORIES.forEach(function(c,i){CAT_ORDER[c]=i});
-var REPAIR_THRESHOLD=150,TOTAL_STEPS=7;
-var items=[],current={},step=1;
+/*
+  FLOW: Photo → Catégorie → Désignation → Facture → Date → Valeur → Réparable
+  Steps:  1        2            3            4        5       6         7
+*/
+var CATS=['Électrique','Non électrique','Meuble','Textile / Linge','Autre'];
+var CORD={};CATS.forEach(function(c,i){CORD[c]=i});
+var RTHR=150,STEPS=7;
+var items=[],cur={},step=1,first=true;
+var _it=null,_ia=false;
 
-function go(id){
-  var screens=document.querySelectorAll('.screen');
-  for(var i=0;i<screens.length;i++) screens[i].classList.remove('active');
-  document.getElementById('screen-'+id).classList.add('active');
-  window.scrollTo(0,0);
-  updateBadge();
+/* ── INTERSTITIALS ── */
+var INT={
+  intro:{ic:'',t:"Pour le premier objet, nous vous donnons nos conseils. Pour les suivants, vous saurez."},
+  pre:{ic:'💡',t:"Chaque ligne renseignée vous rapproche d'une indemnité plus juste. Soyez vigilant."},
+  postPhoto:{ic:'📷',t:"Une photo nette, avec la marque et les stigmates du dommage.",e:"Si ce n'est pas visible, gardez l'objet à disposition pour l'expertise."},
+  postCat:{ic:'🔎',t:"La catégorie est celle qui détermine le taux de vétusté applicable."},
+  postDesig:{ic:'🔎',t:"Un bien décrit avec précision, c'est la possibilité de le retrouver facilement aujourd'hui.",e:"Exemple : Micro-ondes SAMSUNG 2000W"},
+  postFact:{ic:'📅',t:"Sans facture, la vétusté maximum est appliquée. Trouvez-la ou au moins l'année de fabrication."},
+  postDate:{ic:'⚠️',t:"C'est le plus important. La valeur de remplacement aujourd'hui n'est pas le prix que vous avez payé.",e:"Exemple : Micro-ondes Samsung 2000W — 100 € en 2022 → 130 € en 2026"}
+};
+
+function showI(key,cb){
+  var d=INT[key];
+  if(!d||!first){cb();return;}
+  _ia=true;
+  var el=document.createElement('div');
+  el.className='interstitial';el.id='iov';
+  var h='';
+  if(d.ic) h+='<div class="inter-icon">'+d.ic+'</div>';
+  h+='<div class="inter-text">'+d.t+'</div>';
+  if(d.e) h+='<div class="inter-example">'+d.e+'</div>';
+  el.innerHTML=h;
+  document.body.appendChild(el);
+  function dismiss(){
+    if(!_ia)return;_ia=false;clearTimeout(_it);
+    el.removeEventListener('click',dismiss);
+    if(el.parentNode)el.parentNode.removeChild(el);
+    cb();
+  }
+  el.addEventListener('click',dismiss);
+  _it=setTimeout(dismiss,5500);
 }
-function updateBadge(){
-  var b=document.getElementById('header-badge');
+
+/* ── NAVIGATION ── */
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  var old=document.getElementById('iov');
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  _ia=false;
+  document.getElementById('screen-'+id).classList.add('active');
+  window.scrollTo(0,0);updB();
+}
+
+function updB(){
+  var b=document.getElementById('hbadge');
   if(items.length>0){b.style.display='';b.textContent=items.length+' bien'+(items.length>1?'s':'');}
   else b.style.display='none';
 }
 
-function checkInfo(){
-  var nom=document.getElementById('input-nom').value.trim();
-  document.getElementById('btn-info-next').disabled=!nom;
-  var sin=document.getElementById('input-sinistre').value.trim();
-  document.getElementById('btn-skip-sinistre').style.display=sin?'none':'';
+/* ── INFO ── */
+function chkInfo(){
+  var nom=document.getElementById('i-nom').value.trim();
+  document.getElementById('b-info').disabled=!nom;
+  document.getElementById('bskip').style.display=
+    document.getElementById('i-sin').value.trim()?'none':'';
 }
-function skipSinistre(){
-  document.getElementById('input-sinistre').value='Non communiqué';
-  checkInfo();
+
+function skipSin(){
+  document.getElementById('i-sin').value='Non communiqué';chkInfo();
 }
-function startWizard(){resetCurrent();step=1;go('wizard');renderStep();}
-function resetCurrent(){current={category:null,designation:'',facture:null,dateDay:'',dateMonth:'',dateYear:'',valeur:'',reparable:null,photos:[]};}
 
-function ds(){return step<=5?step:step===6?6:7;}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function startWiz(){
+  rstCur();step=1;go('wizard');
+  showI('intro',function(){
+    showI('pre',function(){render();});
+  });
+}
 
-function renderStep(){
-  var d=ds(),pct=(d/TOTAL_STEPS)*100;
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=d+'/'+TOTAL_STEPS;
-  var body=document.getElementById('wizard-body');
-  var btn=document.getElementById('btn-wiz-next');
-  btn.textContent=step===7?'Enregistrer ce bien':'Suivant';
+function rstCur(){
+  cur={cat:null,desig:'',fact:null,dD:'',dM:'',dY:'',val:'',rep:null,photos:[]};
+}
+
+/* ── WIZARD RENDER ── */
+function esc(s){
+  return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function render(){
+  go('wizard');
+  var pct=(step/STEPS)*100;
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('plbl').textContent=step+'/'+STEPS;
+  var body=document.getElementById('wbody');
+  var btn=document.getElementById('b-next');
+  var isLast=(step===7)||(step===6&&!(parseFloat(cur.val)>RTHR));
+  btn.textContent=isLast?'Enregistrer ce bien':'Suivant';
 
   var h='<div class="fade-in" style="display:flex;flex-direction:column;gap:16px">';
-  switch(step){
-    case 1:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Quelle est la catégorie ?</div><div class="q-opts">';
-      CATEGORIES.forEach(function(cat){
-        h+='<button class="q-opt" onclick="pickCat(\''+cat.replace(/'/g,"\\'")+'\')">'+cat+'</button>';
-      });
-      h+='</div>';
-      break;
-    case 2:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Désignation du bien</div>';
-      h+='<div class="q-help">Indiquez la marque et le modèle exact — c\'est ce qui vous servira à retrouver le prix en ligne.</div>';
-      h+='<input class="q-input" id="input-desig" placeholder="Ex : Micro-ondes Samsung MS23F301" value="'+esc(current.designation)+'" oninput="current.designation=this.value;checkWiz()">';
-      break;
-    case 3:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Avez-vous la facture ?</div><div class="q-opts">';
-      [['Oui','Oui'],['Non','Non'],['En cours','Il faut que je cherche']].forEach(function(pair){
-        h+='<button class="q-opt" onclick="pickFacture(\''+pair[0]+'\')">'+pair[1]+'</button>';
-      });
-      h+='</div>';
-      break;
-    case 4:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Date de l\'achat</div>';
-      h+='<div class="q-help">Consultez votre facture pour retrouver la date exacte.</div>';
-      h+='<div class="date-row">';
-      h+='<select class="q-select" onchange="current.dateDay=this.value;checkWiz()"><option value="">Jour</option>';
-      for(var i=1;i<=31;i++) h+='<option value="'+i+'"'+(current.dateDay==i?' selected':'')+'>'+String(i).padStart(2,'0')+'</option>';
-      h+='</select>';
-      h+='<select class="q-select" onchange="current.dateMonth=this.value;checkWiz()"><option value="">Mois</option>';
-      ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'].forEach(function(m,i){
-        h+='<option value="'+(i+1)+'"'+(current.dateMonth==i+1?' selected':'')+'>'+m+'</option>';
-      });
-      h+='</select>';
-      h+='<select class="q-select" onchange="current.dateYear=this.value;checkWiz()"><option value="">Année</option>';
-      for(var y=2026;y>=1990;y--) h+='<option value="'+y+'"'+(current.dateYear==y?' selected':'')+'>'+y+'</option>';
-      h+='</select></div>';
-      break;
-    case 5:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Valeur de rachat aujourd\'hui</div>';
-      h+='<div class="q-help">Combien coûte ce bien neuf aujourd\'hui ? Recherchez le prix actuel sur internet, pas le prix que vous avez payé.</div>';
-      h+='<div class="input-wrap"><input class="q-input" id="input-val" type="number" inputmode="numeric" placeholder="0" value="'+esc(current.valeur)+'" oninput="current.valeur=this.value;checkWiz()" style="padding-right:40px"><span class="input-suffix">€</span></div>';
-      if(current.designation){
-        h+='<button class="q-opt" style="border-color:rgba(200,240,96,.2);color:var(--accent);font-size:14px" onclick="window.open(\'https://www.google.com/search?q=\'+encodeURIComponent(\''+esc(current.designation).replace(/'/g,"\\'")+' prix\'),\'_blank\')">🔍 Rechercher le prix en ligne</button>';
-      }
-      break;
-    case 6:
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Le bien est-il réparable ?</div><div class="q-opts">';
-      ['Oui','Non'].forEach(function(o){
-        h+='<button class="q-opt" onclick="pickReparable(\''+o+'\')">'+o+'</button>';
-      });
-      h+='</div>';
-      break;
-    case 7:
-      var p0=current.photos[0],p1=current.photos[1];
-      h+='<div class="q-num">Question '+d+'/'+TOTAL_STEPS+'</div><div class="q-text">Justificatif photo</div>';
-      h+='<div class="q-help">Prenez une photo d\'ensemble du bien sinistré.</div>';
-      h+='<div class="photo-zone" onclick="document.getElementById(\'file-photo1\').click()"><div style="font-size:28px;margin-bottom:6px">📷</div><div style="font-size:14px;color:var(--text3)">Prendre une photo</div></div>';
-      if(p0) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p0)+'</span></div>';
-      h+='<div><div class="photo-zone photo-zone-sm" onclick="document.getElementById(\'file-photo2\').click()"><div style="font-size:13px;color:var(--text3)">+ Photo plaque signalétique</div></div>';
-      if(p1) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p1)+'</span></div>';
-      h+='</div>';
-      h+='<div class="info-box">💡 Si l\'objet dispose d\'une plaque signalétique, prenez-en une seconde photo.</div>';
-      break;
+
+  if(step===1){
+    var p0=cur.photos[0],p1=cur.photos[1];
+    h+='<div class="q-num">Question 1/'+STEPS+'</div>';
+    h+='<div class="q-text">Photographiez le bien</div>';
+    h+='<div class="q-help">Prenez une photo d\'ensemble du bien sinistré.</div>';
+    h+='<div class="photo-zone" onclick="document.getElementById(\'fp1\').click()">';
+    h+='<div style="font-size:28px;margin-bottom:6px">📷</div>';
+    h+='<div style="font-size:14px;color:var(--text3)">Prendre une photo</div></div>';
+    if(p0) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p0)+'</span></div>';
+    h+='<div style="margin-top:10px"><div class="photo-zone photo-zone-sm" onclick="document.getElementById(\'fp2\').click()">';
+    h+='<div style="font-size:13px;color:var(--text3)">+ Photo facture ou plaque signalétique</div></div>';
+    if(p1) h+='<div class="photo-preview"><span style="color:var(--success)">✓</span><span style="flex:1">'+esc(p1)+'</span></div>';
+    h+='</div>';
+    h+='<div class="info-box">Les photos et documents seront sur votre pellicule, il ne restera plus qu\'à les transférer à l\'assurance avec votre état de pertes.</div>';
   }
+
+  else if(step===2){
+    h+='<div class="q-num">Question 2/'+STEPS+'</div>';
+    h+='<div class="q-text">Quelle est la catégorie du mobilier ?</div>';
+    h+='<div class="q-opts">';
+    CATS.forEach(function(c){
+      h+='<button class="q-opt" onclick="pickCat(\''+c.replace(/'/g,"\\'")+'\')">'+c+'</button>';
+    });
+    h+='</div>';
+  }
+
+  else if(step===3){
+    h+='<div class="q-num">Question 3/'+STEPS+'</div>';
+    h+='<div class="q-text">Désignation du bien</div>';
+    h+='<div class="q-help">Indiquez la marque et le modèle exact — c\'est ce qui vous servira à retrouver le prix en ligne.</div>';
+    h+='<input class="q-input" id="inp-d" placeholder="Micro-ondes SAMSUNG 2000W" value="'+esc(cur.desig)+'" oninput="cur.desig=this.value;chkW()">';
+  }
+
+  else if(step===4){
+    h+='<div class="q-num">Question 4/'+STEPS+'</div>';
+    h+='<div class="q-text">Avez-vous la facture ?</div>';
+    h+='<div class="q-opts">';
+    [['Oui','Oui'],['Non','Non'],['En cours','Il faut que je cherche']].forEach(function(p){
+      h+='<button class="q-opt" onclick="pickFact(\''+p[0]+'\')">'+p[1]+'</button>';
+    });
+    h+='</div>';
+  }
+
+  else if(step===5){
+    h+='<div class="q-num">Question 5/'+STEPS+'</div>';
+    h+='<div class="q-text">Date de l\'achat</div>';
+    h+='<div class="q-help">Consultez votre facture pour retrouver la date exacte.</div>';
+    h+='<div class="date-row">';
+    h+='<select class="q-select" onchange="cur.dD=this.value;chkW()"><option value="">Jour</option>';
+    for(var i=1;i<=31;i++) h+='<option value="'+i+'"'+(cur.dD==i?' selected':'')+'>'+String(i).padStart(2,'0')+'</option>';
+    h+='</select>';
+    h+='<select class="q-select" onchange="cur.dM=this.value;chkW()"><option value="">Mois</option>';
+    ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'].forEach(function(m,i){
+      h+='<option value="'+(i+1)+'"'+(cur.dM==i+1?' selected':'')+'>'+m+'</option>';
+    });
+    h+='</select>';
+    h+='<select class="q-select" onchange="cur.dY=this.value;chkW()"><option value="">Année</option>';
+    for(var y=2026;y>=1990;y--) h+='<option value="'+y+'"'+(cur.dY==y?' selected':'')+'>'+y+'</option>';
+    h+='</select></div>';
+    h+='<button class="btn-skip" onclick="skipDate()">Je remplirai après</button>';
+  }
+
+  else if(step===6){
+    h+='<div class="q-num">Question 6/'+STEPS+'</div>';
+    h+='<div class="q-text">Valeur de rachat aujourd\'hui</div>';
+    h+='<div class="q-help">Combien coûte ce bien neuf aujourd\'hui ? Recherchez le prix actuel sur internet, pas le prix que vous avez payé.</div>';
+    h+='<div class="input-wrap"><input class="q-input" id="inp-v" type="number" inputmode="numeric" placeholder="0" value="'+esc(cur.val)+'" oninput="cur.val=this.value;chkW()" style="padding-right:40px"><span class="input-suffix">€</span></div>';
+    if(cur.desig){
+      h+='<button class="q-opt" style="margin-top:8px;border-color:rgba(200,240,96,.2);color:var(--accent);font-size:14px" onclick="window.open(\'https://www.google.com/search?q=\'+encodeURIComponent(\''+esc(cur.desig).replace(/'/g,"\\'")+' prix\'),\'_blank\')">🔍 Rechercher le prix en ligne</button>';
+      h+='<div style="font-size:13px;color:var(--accent);text-align:center;margin-top:4px">N\'oubliez pas de faire une capture d\'écran.</div>';
+    }
+  }
+
+  else if(step===7){
+    h+='<div class="q-num">Question 7/'+STEPS+'</div>';
+    h+='<div class="q-text">Le bien est-il réparable ?</div>';
+    h+='<div class="q-opts">';
+    ['Oui','Non'].forEach(function(o){
+      h+='<button class="q-opt" onclick="pickRep(\''+o+'\')">'+o+'</button>';
+    });
+    h+='</div>';
+  }
+
   h+='</div>';
   body.innerHTML=h;
-  checkWiz();
+  chkW();
   setTimeout(function(){var inp=body.querySelector('input.q-input');if(inp)inp.focus();},60);
 }
 
-function checkWiz(){
-  var btn=document.getElementById('btn-wiz-next'),ok=false;
-  switch(step){
-    case 1:ok=!!current.category;break;
-    case 2:ok=current.designation.trim().length>0;break;
-    case 3:ok=!!current.facture;break;
-    case 4:ok=!!current.dateYear;break;
-    case 5:ok=current.valeur&&parseFloat(current.valeur)>0;break;
-    case 6:ok=!!current.reparable;break;
-    case 7:ok=true;break;
-  }
+/* ── VALIDATION ── */
+function chkW(){
+  var btn=document.getElementById('b-next'),ok=false;
+  if(step===1) ok=true;
+  else if(step===2) ok=!!cur.cat;
+  else if(step===3) ok=cur.desig.trim().length>0;
+  else if(step===4) ok=!!cur.fact;
+  else if(step===5) ok=!!cur.dY;
+  else if(step===6) ok=cur.val&&parseFloat(cur.val)>0;
+  else if(step===7) ok=!!cur.rep;
   btn.disabled=!ok;
 }
 
-function pickCat(cat){current.category=cat;step=2;renderStep();}
-function pickFacture(val){current.facture=val;step=4;renderStep();}
-function pickReparable(val){current.reparable=val;step=7;renderStep();}
-
-function onPhoto(slot){
-  var input=document.getElementById('file-photo'+(slot+1));
-  var file=input.files[0];if(!file)return;
-  current.photos[slot]=file.name.replace(/[^\w.\-]/g,'_');
-  renderStep();input.value='';
+/* ── AUTO-ADVANCE + INTERSTITIALS ── */
+function pickCat(c){
+  cur.cat=c;
+  showI('postCat',function(){step=3;render();});
 }
 
-function wizNext(){
-  if(step===5){
-    if(parseFloat(current.valeur)>REPAIR_THRESHOLD)step=6;
-    else{current.reparable='—';step=7;}
-  }else if(step===7){
-    items.push({category:current.category,designation:current.designation,facture:current.facture,dateDay:current.dateDay,dateMonth:current.dateMonth,dateYear:current.dateYear,valeur:current.valeur,reparable:current.reparable,photos:current.photos.slice()});
-    go('recap');renderRecap();return;
-  }else step++;
-  renderStep();
+function pickFact(v){
+  cur.fact=v;
+  showI('postFact',function(){step=5;render();});
 }
 
-function wizBack(){
-  if(step===7){step=parseFloat(current.valeur)>REPAIR_THRESHOLD?6:5;}
-  else if(step===1){if(items.length>0){go('recap');renderRecap();}else go('info');return;}
+function pickRep(v){
+  cur.rep=v;
+  saveItem();
+}
+
+function skipDate(){
+  cur.dD='';cur.dM='';cur.dY='à compléter';
+  showI('postDate',function(){step=6;render();});
+}
+
+function onPh(slot){
+  var inp=document.getElementById('fp'+(slot+1));
+  var f=inp.files[0];if(!f)return;
+  cur.photos[slot]=f.name.replace(/[^\w.\-]/g,'_');
+  render();inp.value='';
+}
+
+/* ── WIZARD NAV ── */
+function wNext(){
+  if(step===1){
+    showI('postPhoto',function(){step=2;render();});
+  }
+  else if(step===3){
+    showI('postDesig',function(){step=4;render();});
+  }
+  else if(step===5){
+    showI('postDate',function(){step=6;render();});
+  }
+  else if(step===6){
+    var v=parseFloat(cur.val)||0;
+    if(v>RTHR){step=7;render();}
+    else{cur.rep='—';saveItem();}
+  }
+  else{step++;render();}
+}
+
+function wBack(){
+  if(step===1){
+    if(items.length>0){go('recap');renderR();}
+    else go('info');
+    return;
+  }
+  else if(step===7) step=6;
   else step--;
-  renderStep();
+  render();
 }
 
-function renderRecap(){
-  var body=document.getElementById('recap-body');
-  var total=0;items.forEach(function(i){total+=parseFloat(i.valeur)||0;});
-  var grouped={};CATEGORIES.forEach(function(c){grouped[c]=items.filter(function(i){return i.category===c;});});
+function saveItem(){
+  items.push({
+    cat:cur.cat,desig:cur.desig,fact:cur.fact,
+    dD:cur.dD,dM:cur.dM,dY:cur.dY,
+    val:cur.val,rep:cur.rep,photos:cur.photos.slice()
+  });
+  first=false;
+  go('recap');renderR();
+}
+
+/* ── RECAP ── */
+function renderR(){
+  var body=document.getElementById('rbody');
+  var total=0;items.forEach(function(i){total+=parseFloat(i.val)||0;});
+  var grp={};CATS.forEach(function(c){grp[c]=items.filter(function(i){return i.cat===c;});});
   var h='';
-  CATEGORIES.forEach(function(cat){
-    var ci=grouped[cat];if(!ci||ci.length===0)return;
-    var ct=0;ci.forEach(function(i){ct+=parseFloat(i.valeur)||0;});
-    h+='<div class="recap-cat"><div class="recap-cat-header"><span class="recap-cat-name">'+cat+'</span><span class="recap-cat-total">'+ct.toLocaleString('fr-FR')+' €</span></div>';
+  CATS.forEach(function(cat){
+    var ci=grp[cat];if(!ci||!ci.length)return;
+    var ct=0;ci.forEach(function(i){ct+=parseFloat(i.val)||0;});
+    h+='<div class="recap-cat"><div class="recap-cat-header">';
+    h+='<span class="recap-cat-name">'+cat+'</span>';
+    h+='<span class="recap-cat-total">'+ct.toLocaleString('fr-FR')+' €</span></div>';
     ci.forEach(function(item){
       var idx=items.indexOf(item);
       var meta=[];var pc=item.photos.filter(Boolean).length;
       if(pc>0)meta.push('📷'+pc);
-      if(item.facture==='Oui')meta.push('Facture ✓');
-      h+='<div class="recap-item"><div class="recap-item-info"><div class="recap-item-name">'+esc(item.designation)+'</div>';
-      if(meta.length)h+='<div class="recap-item-meta">'+meta.join(' · ')+'</div>';
-      h+='</div><span class="recap-item-price">'+parseFloat(item.valeur).toLocaleString('fr-FR')+' €</span>';
-      h+='<button class="recap-item-del" onclick="delItem('+idx+')">×</button></div>';
+      if(item.fact==='Oui')meta.push('Facture ✓');
+      h+='<div class="recap-item"><div class="recap-item-info">';
+      h+='<div class="recap-item-name">'+esc(item.desig)+'</div>';
+      if(meta.length) h+='<div class="recap-item-meta">'+meta.join(' · ')+'</div>';
+      h+='</div><span class="recap-item-price">'+parseFloat(item.val).toLocaleString('fr-FR')+' €</span>';
+      h+='<button class="recap-item-del" onclick="delI('+idx+')">×</button></div>';
     });
     h+='</div>';
   });
-  h+='<div class="recap-total"><span class="recap-total-label">Total</span><span class="recap-total-value">'+total.toLocaleString('fr-FR')+' €</span></div>';
-  h+='<div class="info-box" style="margin-top:24px"><strong>Rappel :</strong> envoyez vos photos séparément à votre assureur. Les noms de fichiers dans le tableau permettent de faire le lien avec chaque bien.</div>';
+  h+='<div class="recap-total"><span class="recap-total-label">Total</span>';
+  h+='<span class="recap-total-value">'+total.toLocaleString('fr-FR')+' €</span></div>';
+  h+='<div class="info-box" style="margin-top:24px"><strong>Rappel :</strong> les photos et factures sont dans votre pellicule, assurez-vous qu\'elles soient de bonne qualité avant envoi.</div>';
   body.innerHTML=h;
-  document.getElementById('btn-generate').disabled=items.length===0;
-  updateBadge();
+  document.getElementById('b-gen').disabled=items.length===0;
+  updB();
 }
 
-function delItem(idx){items.splice(idx,1);if(items.length===0){go('info');return;}renderRecap();}
-function addAnother(){resetCurrent();step=1;go('wizard');renderStep();}
+function delI(idx){items.splice(idx,1);if(!items.length){go('info');return;}renderR();}
+function addMore(){rstCur();step=1;go('wizard');render();}
 
-function generateExcel(){
-  if(typeof XLSX==='undefined'){alert('Le module d\'export est en cours de chargement. Réessayez dans quelques secondes.');return;}
-  var nom=document.getElementById('input-nom').value.trim();
-  var sinistre=document.getElementById('input-sinistre').value.trim();
-  var sorted=items.slice().sort(function(a,b){return(CAT_ORDER[a.category]||99)-(CAT_ORDER[b.category]||99);});
-  var headers=['Localisation','Catégorie','Désignation','Facture',"Date d'achat",'Valeur de rachat (€)','Réparable','Justificatif photo'];
-  var rows=[],lastCat=null;
-  sorted.forEach(function(item){
-    if(item.category!==lastCat&&lastCat!==null){
-      var ci=sorted.filter(function(i){return i.category===lastCat;});
-      var ct=0;ci.forEach(function(i){ct+=parseFloat(i.valeur)||0;});
-      rows.push(['','','Sous-total '+lastCat,'','',ct,'','']);
-      rows.push([]);
-    }
-    lastCat=item.category;
-    var parts=[];
-    if(item.dateDay)parts.push(String(item.dateDay).padStart(2,'0'));
-    if(item.dateMonth)parts.push(String(item.dateMonth).padStart(2,'0'));
-    if(item.dateYear)parts.push(item.dateYear);
-    rows.push(['',item.category,item.designation,item.facture,parts.join('/'),parseFloat(item.valeur)||0,item.reparable,item.photos.filter(Boolean).join(', ')]);
-  });
-  if(lastCat){
-    var ci2=sorted.filter(function(i){return i.category===lastCat;});
-    var ct2=0;ci2.forEach(function(i){ct2+=parseFloat(i.valeur)||0;});
-    rows.push(['','','Sous-total '+lastCat,'','',ct2,'','']);
+/* ── EXCEL ── */
+function genXL(){
+  if(typeof XLSX==='undefined'){
+    alert('Le module d\'export charge encore. Réessayez dans quelques secondes.');return;
   }
+  var nom=document.getElementById('i-nom').value.trim();
+  var sin=document.getElementById('i-sin').value.trim();
+  var sorted=items.slice().sort(function(a,b){return(CORD[a.cat]||99)-(CORD[b.cat]||99);});
+
+  var hdrs=['Localisation','Catégorie','Désignation','Facture',
+    "Date d'achat",'Valeur de rachat (€)','Réparable','Justificatif photo'];
+
+  var rows=[];
+  sorted.forEach(function(it){
+    var parts=[];
+    if(it.dD&&it.dD!=='à compléter') parts.push(String(it.dD).padStart(2,'0'));
+    if(it.dM) parts.push(String(it.dM).padStart(2,'0'));
+    if(it.dY&&it.dY!=='à compléter') parts.push(it.dY);
+    var ds=it.dY==='à compléter'?'À compléter':parts.join('/');
+    rows.push(['',it.cat,it.desig,it.fact,ds,parseFloat(it.val)||0,it.rep,
+      it.photos.filter(Boolean).join(', ')]);
+  });
   rows.push([]);
-  var gt=0;sorted.forEach(function(i){gt+=parseFloat(i.valeur)||0;});
+  var gt=0;sorted.forEach(function(i){gt+=parseFloat(i.val)||0;});
   rows.push(['','','TOTAL GÉNÉRAL','','',gt,'','']);
 
-  var wsData=[['ÉTAT DE PERTES'],[],['Nom :',nom],['N° sinistre :',sinistre],['Date :',new Date().toLocaleDateString('fr-FR')],[],headers].concat(rows);
+  var wsData=[['ÉTAT DE PERTES'],[],
+    ['Nom :',nom],['N° sinistre :',sin],
+    ['Date :',new Date().toLocaleDateString('fr-FR')],
+    [],hdrs].concat(rows);
+
   var ws=XLSX.utils.aoa_to_sheet(wsData);
-  ws['!cols']=[{wch:16},{wch:22},{wch:36},{wch:12},{wch:14},{wch:18},{wch:12},{wch:32}];
+  ws['!cols']=[{wch:16},{wch:22},{wch:36},{wch:12},{wch:14},{wch:20},{wch:12},{wch:32}];
   ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:7}}];
+
+  /* ── STYLES ── */
+  var bdr={style:'thin',color:{rgb:'000000'}};
+  var borders={top:bdr,bottom:bdr,left:bdr,right:bdr};
+  var centerAlign={horizontal:'center',vertical:'center'};
+
+  // Title
+  var tA=XLSX.utils.encode_cell({r:0,c:0});
+  if(ws[tA]) ws[tA].s={font:{bold:true,sz:14},alignment:centerAlign};
+
+  // Header row (index 6)
+  var hr=6;
+  for(var c=0;c<hdrs.length;c++){
+    var a=XLSX.utils.encode_cell({r:hr,c:c});
+    if(ws[a]) ws[a].s={font:{bold:true,sz:11},alignment:centerAlign,border:borders};
+  }
+
+  // Data rows + total
+  var ds2=hr+1,de=ds2+rows.length;
+  for(var r=ds2;r<de;r++){
+    for(var c2=0;c2<hdrs.length;c2++){
+      var a2=XLSX.utils.encode_cell({r:r,c:c2});
+      if(!ws[a2]) ws[a2]={t:'s',v:''};
+      var isTotal=(r===wsData.length-1);
+      ws[a2].s={
+        alignment:centerAlign,
+        border:borders,
+        font:isTotal?{bold:true,sz:12}:{sz:11}
+      };
+    }
+  }
+
   var wb=XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb,ws,'État de pertes');
   XLSX.writeFile(wb,'Etat_de_pertes_'+nom.replace(/\s+/g,'_')+'.xlsx');
 }
 
-(function(){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.async=true;document.body.appendChild(s);})();
+/* ── LOAD XLSX-JS-STYLE ── */
+(function(){
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js';
+  s.async=true;
+  document.body.appendChild(s);
+})();
 </script>
 </body>
 </html>
